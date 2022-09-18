@@ -1,0 +1,125 @@
+
+   !DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Experiment 6</title>
+       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   
+   </head>
+   <body>
+       <!-- Variable Operators conditions function event -->
+       <div class="container mt-5">
+           <h1>Student Marks</h1>
+           <form action="">
+               <div class="form-group">
+                   <label>Name: </label><br>
+                   <input class="form-control" type="text" id="name" placeholder="Enter your name">
+               </div>
+               <div class="form-group">
+                   <label>Roll Number: </label><br>
+                   <input class="form-control" type="text" id="rollNo" placeholder="Enter your roll number">
+               </div>
+               <h4>Subjects</h4>
+               <div class="container">
+                   <div class="row mb-3">
+                       <div class="col-sm-6">
+                           <label>IP</label><br>
+                           <input value="0" class="form-control" type="text" id="ip" placeholder="Please Enter your marks">
+                           <span class="text-danger" id="ipVal"></span>
+                       </div>
+                       <div class="col-sm-6">
+                           <label>E-Biz</label><br>
+                           <input value="0" class="form-control" type="text" id="ebiz" placeholder="Please Enter your marks">
+                           <span class="text-danger" id="ebizVal"></span>
+                       </div>
+                   </div>
+                   <div class="row mb-3">
+                       <div class="col-sm-6">
+                           <label>CNS</label><br>
+                           <input value="0" class="form-control" type="text" id="cns" placeholder="Please Enter your marks">
+                           <span class="text-danger" id="cnsVal"></span>
+                       </div>
+                       <div class="col-sm-6">
+                           <label>SE</label><br>
+                           <input value="0" class="form-control" type="text" id="se" placeholder="Please Enter your marks">
+                           <span class="text-danger" id="seVal"></span>
+                       </div>
+                   </div>
+                   <div class="row mb-3">
+                       <div class="col-sm-12">
+                           <label>ADMT</label><br>
+                           <input value="0" class="form-control" type="text" id="admt" placeholder="Please Enter your marks">
+                           <span class="text-danger" id="admtVal"></span>
+                       </div>
+                   </div>
+               </div>
+               <button id="submit" class="btn btn-primary btn-lg btn-block" >Submit</button>
+               <button type="reset" id="reset" class="btn btn-outline-primary btn-lg btn-block" >Reset</button>
+   
+           </form>
+       </div>
+   </body>
+   <script>
+       // Get reference of input elements by id
+       let inputName = document.getElementById("name");
+       let inputRoll = document.getElementById("rollNo");
+   
+       let inputIp = document.getElementById("ip");
+       let inputEbiz = document.getElementById("ebiz");
+       let inputSe = document.getElementById("se");
+       let inputCns = document.getElementById("cns");
+       let inputAdmt = document.getElementById("admt");
+   
+       // Get reference of buttons by id
+       let btnSubmit = document.getElementById("submit");
+       let btnReset = document.getElementById("reset");
+   
+       // Add click listeners to buttons
+       // addEventListener("eventName",functionName)
+       btnSubmit.addEventListener("click",Validate);
+       btnReset.addEventListener("click",Reset);
+   
+       // List of input elements
+       const inputs = [inputIp,inputEbiz,inputSe,inputCns,inputAdmt];
+   
+       // Validation function
+       function Validate(event){
+           // Prevent default behaviour of submit
+           event.preventDefault();
+           // Boolean variable to determine pass or fail
+           let isFaled = false;
+   
+           // For each input in inputs array do this
+           inputs.forEach(input => { 
+               // store value from input into value variable
+               let value = parseInt(input.value);
+               // Get reference of span to show validation message
+               const span = document.getElementById(input.id+"Val");
+               if(value < 35){
+                   span.innerText = "Fail";
+                   isFaled = true;
+               }else{
+                   span.innerText = "";
+               }
+           });
+           if(isFaled){
+               alert("Fail");
+           }else{
+               alert("Pass");
+           }
+       }
+   
+       function Reset(event){
+           // Reset all spans
+           inputs.forEach(input => {
+               let span = document.getElementById(input.id+"Val");
+               span.innerText = "";
+           });
+   
+       }
+   </script>
+   </html>
+   
